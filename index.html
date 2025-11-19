@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MACT Technical Writing Ltd. | Technical Publications & Documentation Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MACT Technical Writing Ltd. provides specialized technical publications, aerospace & defence documentation, and controlled-goods-ready support services in Canada." />
+
+  <style>
+    :root {
+      --primary: #1d3557;
+      --primary-light: #457b9d;
+      --accent: #e9c46a;
+      --bg: #f5f7fa;
+      --text: #1f2933;
+      --muted: #6b7b93;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3rem 0 2.5rem;
+      background: linear-gradient(135deg, #1d3557 0%, #27496d 45%, #f5f7fa 45%, #f5f7fa 100%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: #e0ecff;
+      max-width: 34rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1b1f23;
+      border: none;
+      border-radius: 999px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: transparent;
+      color: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.22);
+      border: 1px solid #e1e7f0;
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 0.4rem;
+      background: var(--primary-light);
+    }
+
+    section {
+      padding: 3rem 0 2rem;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section p.section-intro {
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+      max-width: 44rem;
+    }
+
+    /* Services */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e1e7f0;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+
+    .card ul li {
+      margin-bottom: 0.35rem;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-light);
+    }
+
+    /* Industries & Compliance */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: #e9eff8;
+      color: var(--primary);
+    }
+
+    .highlight-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #f0e3bb;
+      box-shadow: 0 8px 15px rgba(148, 117, 52, 0.12);
+    }
+
+    .highlight-box h3 {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .highlight-box ul {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+
+    .highlight-box li {
+      margin-bottom: 0.35rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .highlight-box li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #5b8c51;
+      font-size: 0.8rem;
+      top: 0.1rem;
+    }
+
+    /* Company */
+    .company-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .key-points {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .key-points li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .key-points li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 0.8rem;
+      top: 0.1rem;
+    }
+
+    .info-block {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #e1e7f0;
+      font-size: 0.9rem;
+    }
+
+    .info-block strong {
+      display: inline-block;
+      width: 6.2rem;
+      color: var(--muted);
+    }
+
+    .info-row {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Contact */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    form {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #e1e7f0;
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      margin-bottom: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccd5e0;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-details {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .contact-details p {
+      margin-bottom: 0.6rem;
+    }
+
+    footer {
+      background: #0b1727;
+      color: #9ba4b5;
+      font-size: 0.8rem;
+      padding: 1.2rem 0;
+      margin-top: 2rem;
+    }
+
+    footer .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    footer a {
+      color: #cbd5f5;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero {
+        background: linear-gradient(160deg, #1d3557 0%, #27496d 60%, #f5f7fa 60%, #f5f7fa 100%);
+      }
+
+      .hero-inner,
+      .grid,
+      .two-col,
+      .company-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none; /* keep header clean on mobile; could be extended with a burger menu */
+      }
+
+      .hero-card {
+        margin-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 2.1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      section {
+        padding: 2.3rem 0 1.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo">MACT</div>
+        <div>MACT Technical Writing Ltd.</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#company">Company</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>Technical Publications for Aerospace, Defence & Complex Systems</h1>
+        <p>
+          MACT Technical Writing Ltd. is a Canadian-owned corporation that delivers
+          precise, standards-driven technical documentation for safety-critical and
+          controlled goods environments.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge">Technical Publications &amp; ICAs</span>
+          <span class="badge">Aerospace &amp; Defence</span>
+          <span class="badge">S1000D / DITA-ready</span>
+          <span class="badge">Secure Canadian Corporation</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#contact"><button class="btn-primary">Request Documentation Support</button></a>
+          <a href="#company"><button class="btn-secondary">View Corporate Profile</button></a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Controlled Goods–Ready Documentation Partner</h2>
+        <p>
+          MACT Technical Writing Ltd. understands the sensitivity of controlled technical data.
+          We operate with processes designed to align with Canada’s Controlled Goods Program
+          and applicable export-control considerations.
+        </p>
+        <ul class="hero-list">
+          <li><span class="hero-dot"></span>Canadian-registered corporation based in Ontario</li>
+          <li><span class="hero-dot"></span>Experience with aerospace, aviation and security-sensitive programs</li>
+          <li><span class="hero-dot"></span>Secure handling of drawings, specifications and proprietary data</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2>Technical Documentation Services</h2>
+      <p class="section-intro">
+        MACT Technical Writing Ltd. supports OEMs, system integrators and engineering organizations
+        with complete technical publication services throughout the product life cycle.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Technical Manuals &amp; ICAs</h3>
+          <p>Clear, maintainable documentation tailored to regulatory and customer requirements.</p>
+          <ul>
+            <li>Installation &amp; commissioning manuals</li>
+            <li>Operation &amp; maintenance manuals</li>
+            <li>Instructions for Continued Airworthiness (ICA)</li>
+            <li>Service bulletins &amp; field change documentation</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Structured Authoring</h3>
+          <p>Content that can be reused, repurposed and published across multiple formats.</p>
+          <ul>
+            <li>Topic-based authoring (DITA / S1000D-style)</li>
+            <li>XML content development and review</li>
+            <li>Print, PDF, web and portal outputs</li>
+            <li>Content migration and cleanup</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Engineering &amp; Illustrations</h3>
+          <p>Visually accurate material derived directly from engineering data.</p>
+          <ul>
+            <li>3D-to-2D technical illustrations</li>
+            <li>Exploded views, BOM-based graphics</li>
+            <li>Safety, warning and procedural graphics</li>
+            <li>Collaboration with mechanical &amp; electrical SMEs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries & Compliance -->
+  <section id="industries">
+    <div class="container two-col">
+      <div>
+        <h2>Industries Served</h2>
+        <p class="section-intro">
+          Our experience spans projects where reliability, traceability and regulatory
+          compliance are essential.
+        </p>
+        <ul class="key-points">
+          <li>Aerospace and aviation ground support equipment</li>
+          <li>Defence and security-sensitive systems</li>
+          <li>Industrial automation and complex electro-mechanical equipment</li>
+          <li>Transportation and critical infrastructure</li>
+        </ul>
+
+        <div class="tag-list">
+          <span class="tag">Aerospace</span>
+          <span class="tag">Defence</span>
+          <span class="tag">Industrial Systems</span>
+          <span class="tag">Transportation</span>
+        </div>
+      </div>
+
+      <aside class="highlight-box">
+        <h3>Security &amp; Compliance Focus</h3>
+        <p style="margin-bottom: 0.6rem;">
+          MACT Technical Writing Ltd. is committed to processes that support work on
+          controlled goods and sensitive technical data:
+        </p>
+        <ul>
+          <li>Canadian-owned and controlled corporation</li>
+          <li>Work performed within Canada unless otherwise agreed</li>
+          <li>Secure handling of customer-provided drawings and specifications</li>
+          <li>Willingness to comply with Controlled Goods Program requirements</li>
+          <li>Awareness of export-control obligations and data-segregation practices</li>
+        </ul>
+        <p style="font-size: 0.8rem; margin-top: 0.7rem; color: #8b6e28;">
+          *This website describes MACT Technical Writing Ltd.’s capabilities and intent.
+          Formal registration and approval remain subject to Government of Canada processes.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section id="company">
+    <div class="container company-grid">
+      <div>
+        <h2>Corporate Profile</h2>
+        <p class="section-intro">
+          MACT Technical Writing Ltd. is a specialized documentation partner focused on
+          technically complex and highly regulated environments.
+        </p>
+
+        <ul class="key-points">
+          <li>Incorporated in Canada as a privately held corporation.</li>
+          <li>Based in Ontario, serving clients across Canada.</li>
+          <li>Led by a senior technical writer with experience in aerospace, industrial and large infrastructure projects.</li>
+          <li>Experienced in collaborating with multidisciplinary engineering teams and external stakeholders.</li>
+          <li>Comfortable working under NDAs and project-specific security requirements.</li>
+        </ul>
+      </div>
+
+      <aside class="info-block">
+        <div class="info-row">
+          <strong>Legal Name</strong> MACT Technical Writing Ltd.
+        </div>
+        <div class="info-row">
+          <strong>Jurisdiction</strong> Province of Ontario, Canada
+        </div>
+        <div class="info-row">
+          <strong>Ownership</strong> Canadian-owned and controlled
+        </div>
+        <div class="info-row">
+          <strong>Business Type</strong> Technical writing &amp; documentation services
+        </div>
+        <div class="info-row">
+          <strong>Contact</strong> <a href="mailto:caceresalexj@gmail.com">caceresalexj@gmail.com</a>
+        </div>
+        <div class="info-row">
+          <strong>Phone</strong> +1 (416) 897-1644
+        </div>
+        <div class="info-row">
+          <strong>Location</strong> Greater Hamilton / GTA, Ontario
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact &amp; Engagement</h2>
+      <p class="section-intro">
+        To discuss Controlled Goods-related work, NDAs, or specific documentation projects,
+        please reach out using the form below or via direct email / phone.
+      </p>
+
+      <div class="contact-wrapper">
+        <form>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Your name" />
+          </div>
+
+          <div>
+            <label for="company">Organization</label>
+            <input id="company" type="text" name="company" placeholder="Organization or program name" />
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@example.com" />
+          </div>
+
+          <div>
+            <label for="message">Project or Inquiry Details</label>
+            <textarea id="message" name="message" placeholder="Briefly describe your project, timelines, and any security requirements."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Submit Inquiry (placeholder)</button>
+          <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem;">
+            *Form is for demonstration. Configure with your hosting provider or email service to enable submissions.
+          </p>
+        </form>
+
+        <div class="contact-details">
+          <p><strong>Email:</strong> <a href="mailto:caceresalexj@gmail.com">caceresalexj@gmail.com</a></p>
+          <p><strong>Phone:</strong> +1 (416) 897-1644</p>
+          <p><strong>Region:</strong> Ontario, Canada</p>
+
+          <p>
+            MACT Technical Writing Ltd. is available for long-term programs, fixed-scope
+            documentation projects, or ongoing documentation support agreements.
+          </p>
+
+          <p>
+            Upon request, we can provide additional corporate information to government
+            authorities or prime contractors to support security assessments and Controlled
+            Goods registration processes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> MACT Technical Writing Ltd. All rights reserved.</div>
+      <div>Ontario, Canada · Technical publications &amp; documentation services</div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
