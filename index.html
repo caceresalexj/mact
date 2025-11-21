@@ -680,7 +680,7 @@
       <h2>Contact &amp; Engagement</h2>
       <p class="section-intro">
         To discuss Controlled Goods-related work, NDAs, or specific documentation projects,
-        please reach out using the form below or via direct email / phone.
+        please reach out using the form below or by phone.
       </p>
 
       <div class="contact-wrapper">
@@ -708,15 +708,17 @@
           <!-- Hidden email subject line -->
           <input type="hidden" name="_subject" value="New Inquiry from MACT Technical Writing" />
         
-          <!-- Optional redirect after successful send -->
+          <!-- Redirect on success -->
           <input type="hidden" name="_redirect" value="https://caceresalexj.github.io/thank-you.html" />
+
+          <!-- Redirect on error -->
+          <input type="hidden" name="_error" value="https://caceresalexj.github.io/form-error.html" />
         
           <button type="submit" class="btn-primary">Submit Inquiry</button>
           <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem;">
             *Your message will be sent securely to MACT Technical Writing Ltd.
           </p>
         </form>
-
 
         <div class="contact-details">
           <p><strong>Contact name:</strong> Alejandro Caceres</p>
@@ -738,6 +740,7 @@
     </div>
   </section>
 
+
   <footer>
     <div class="container footer-inner">
       <div>© <span id="year"></span> MACT Technical Writing Ltd. All rights reserved.</div>
@@ -751,6 +754,7 @@
   </script>
 </body>
 </html>
+
 
 
 
