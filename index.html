@@ -76,6 +76,25 @@
       align-items: center;
     }
 
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+    
+    
     .brand {
       display: flex;
       align-items: center;
@@ -114,9 +133,13 @@
 
     /* Hero */
     .hero {
-      padding: 3rem 0 2.5rem;
-      background: linear-gradient(135deg, #1d3557 0%, #27496d 45%, #f5f7fa 45%, #f5f7fa 100%);
-    }
+  padding: 3rem 0 2.5rem;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06) 0, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.06) 0, transparent 55%),
+    linear-gradient(135deg, #1d3557 0%, #27496d 45%, #f5f7fa 45%, #f5f7fa 100%);
+}
+
 
     .hero-inner {
       display: grid;
@@ -161,6 +184,14 @@
       align-items: center;
     }
 
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    
     .btn-primary {
       background: var(--accent);
       color: #1b1f23;
@@ -436,6 +467,20 @@
       margin-bottom: 0.6rem;
     }
 
+    .pdf-link {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary-light);
+    }
+
+    .pdf-link::before {
+      content: "⬇ ";
+      font-size: 0.9rem;
+    }
+    
+
     footer {
       background: #0b1727;
       color: #9ba4b5;
@@ -459,7 +504,10 @@
     /* Responsive */
     @media (max-width: 880px) {
       .hero {
-        background: linear-gradient(160deg, #1d3557 0%, #27496d 60%, #f5f7fa 60%, #f5f7fa 100%);
+        background:
+          radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06) 0, transparent 60%),
+          radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.06) 0, transparent 55%),
+          linear-gradient(160deg, #1d3557 0%, #27496d 60%, #f5f7fa 60%, #f5f7fa 100%);
       }
 
       .hero-inner,
@@ -470,14 +518,36 @@
         grid-template-columns: 1fr;
       }
 
-      nav ul {
-        display: none; /* keep header clean on mobile; could be extended with a burger menu */
+      nav {
+        position: relative;
+      }
+
+      .nav-toggle {
+        display: inline-block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 2.8rem;
+        background: #1d3557;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        flex-direction: column;
+        gap: 0.75rem;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links.open {
+        display: flex;
       }
 
       .hero-card {
         margin-top: 0.5rem;
       }
     }
+
 
     @media (max-width: 600px) {
       .hero {
@@ -504,7 +574,10 @@
         <div>MACT Technical Writing Ltd.</div>
       </div>
       <nav>
-        <ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+        <ul class="nav-links" id="navLinks">
           <li><a href="#services">Services</a></li>
           <li><a href="#industries">Industries</a></li>
           <li><a href="#company">Company</a></li>
@@ -677,6 +750,11 @@
         <div class="info-row">
           <strong>Business Type</strong> Technical writing &amp; documentation services
         </div>
+        <div class="info-row" style="margin-top: 0.8rem;">
+          <a href="MACT-Corporate-Profile.pdf" target="_blank" rel="noopener" class="pdf-link">
+            Download Corporate Profile (PDF)
+          </a>
+        </div>
         <div class="info-row">
           <p>If you’d like to contact me, please use the form below.</p>
         </div>
@@ -720,6 +798,12 @@
             <label for="message">Project or Inquiry Details</label>
             <textarea id="message" name="message" placeholder="Briefly describe your project, timelines, and any security requirements." required></textarea>
           </div>
+
+          <!-- Honeypot field: humans won't see this; bots often will fill it -->
+          <div class="hp-field">
+            <label for="website">Leave this field empty</label>
+            <input type="text" id="website" name="_gotcha" autocomplete="off" />
+          </div>
         
           <!-- Hidden email subject line -->
           <input type="hidden" name="_subject" value="New Inquiry from MACT Technical Writing" />
@@ -729,6 +813,7 @@
 
           <!-- Redirect on error -->
           <input type="hidden" name="_error" value="https://caceresalexj.github.io/form-error.html" />
+
         
           <button type="submit" class="btn-primary">Submit Inquiry</button>
           <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem;">
@@ -767,9 +852,27 @@
   <script>
     // Set current year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+      });
+
+      // Close menu when a link is clicked (nice UX)
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+        });
+      });
+    }
   </script>
 </body>
 </html>
+
 
 
 
